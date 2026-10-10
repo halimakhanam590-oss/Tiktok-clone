@@ -1,39 +1,25 @@
 "use client";
 import { useState } from "react";
-
 const videos = [
-  { id: 1, user: "@halima_khan", desc: "My first TikTok clone ❤️", likes: "12.5K" },
-  { id: 2, user: "@tiktok_lover", desc: "Viral dance 2026", likes: "8.2K" },
-  { id: 3, user: "@dhaka_boy", desc: "Dhaka vibes", likes: "15K" },
+  { user: "@halima_khan", desc: "My first TikTok clone ❤️🔥", likes: "12.5K" },
+  { user: "@dhaka_vibes", desc: "Dhaka to Sylhet tour", likes: "8.2K" },
+  { user: "@viral_bd", desc: "New dance challenge 2026", likes: "22K" },
 ];
-
 export default function Home() {
-  const [index, setIndex] = useState(0);
-  const video = videos[index]!;
-
+  const [i, setI] = useState(0);
+  const v = videos[i % videos.length];
   return (
-    <div className="bg-black text-white min-h-screen flex justify-center">
-      <div className="w-full max-w-[400px] h-screen relative bg-zinc-900 flex flex-col justify-between">
-        <div className="p-4 flex justify-between font-bold">
-          <span>Following</span><span>For You</span>
+    <div style={{ background: "#000", minHeight: "100vh", display: "flex", justifyContent: "center", color: "#fff" }}>
+      <div style={{ width: "100%", maxWidth: 390, height: "100vh", background: "#111", display: "flex", flexDirection: "column", position: "relative" }}>
+        <div style={{ padding: 16, display: "flex", justifyContent: "space-between", fontWeight: "bold" }}><span>Following</span><span style={{ borderBottom: "2px solid white" }}>For You</span><span>🔍</span></div>
+        <div style={{ flex: 1, display: "flex", alignItems: "center", justifyContent: "center", flexDirection: "column" }}>
+          <div style={{ fontSize: 80 }}>▶️</div>
+          <h2 style={{ marginTop: 20, fontSize: 20 }}>{v.user}</h2>
+          <p style={{ marginTop: 10, color: "#ccc" }}>{v.desc}</p>
+          <p style={{ marginTop: 20 }}>❤️ {v.likes} 💬 1.2K 🔗 Share</p>
+          <button onClick={() => setI(i + 1)} style={{ marginTop: 30, padding: "10px 20px", background: "white", color: "black", borderRadius: 20, border: "none", fontWeight: "bold" }}>Next Video ⬆️</button>
         </div>
-
-        <div className="flex-1 flex items-center justify-center text-center p-6">
-          <div>
-            <p className="text-[80px]">▶️</p>
-            <p className="text-xl font-bold mt-4">{video.user}</p>
-            <p className="mt-2 text-zinc-300">{video.desc}</p>
-            <p className="mt-6">❤️ {video.likes}</p>
-          </div>
-        </div>
-
-        <div className="absolute right-3 bottom-32 flex flex-col gap-6 text-center">
-          <button onClick={()=>setIndex((index+1)%videos.length)} className="text-3xl">⬆️<br/><span className="text-xs">Next</span></button>
-        </div>
-
-        <div className="p-4 flex justify-around border-t border-zinc-800">
-          <span>🏠</span><span>🔍</span><span>➕</span><span>💬</span><span>👤</span>
-        </div>
+        <div style={{ padding: 12, display: "flex", justifyContent: "space-around", borderTop: "1px solid #333" }}><span>🏠 Home</span><span>🔍 Search</span><span>➕</span><span>💬 Inbox</span><span>👤 You</span></div>
       </div>
     </div>
   );
